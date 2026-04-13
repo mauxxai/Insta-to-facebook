@@ -426,6 +426,100 @@ body::after {
   font-family: "Lucida Grande", Arial, sans-serif;
 }
 
+.ib-side-item.active .ib-side-label {
+  font-weight: bold;
+}
+
+/* ── CLASSIC WIDGETS (Ticker, Birthdays, etc.) ── */
+.ib-widget {
+  background: white;
+  border: 1px solid #c4ccd8;
+  border-radius: 3px;
+  margin-bottom: 12px;
+  overflow: hidden;
+  font-family: inherit;
+}
+
+.ib-widget-header {
+  background: #f7f8fc;
+  border-bottom: 1px solid #e5e5e5;
+  padding: 6px 10px;
+  font-size: 11px;
+  font-weight: bold;
+  color: #6d84b4;
+  text-transform: uppercase;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.ib-widget-body {
+  padding: 8px 10px;
+}
+
+/* Poke Button */
+.ib-poke-btn {
+  background: #f7f8fc !important;
+  border: 1px solid #ced0d4 !important;
+  border-radius: 2px !important;
+  color: #4b4f56 !important;
+  font-size: 11px !important;
+  font-weight: bold !important;
+  padding: 2px 8px !important;
+  cursor: pointer !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 4px !important;
+}
+
+.ib-poke-btn:hover {
+  background: #ebedf0 !important;
+}
+
+/* Ticker Section */
+.ib-ticker-item {
+  display: flex;
+  gap: 8px;
+  padding: 5px 0;
+  border-bottom: 1px solid #f2f2f2;
+  font-size: 11px;
+  line-height: 1.3;
+}
+
+.ib-ticker-item:last-child { border-bottom: none; }
+
+.ib-ticker-avatar {
+  width: 20px;
+  height: 20px;
+  border-radius: 2px;
+  background: #8b9dc3;
+  flex-shrink: 0;
+}
+
+.ib-ticker-text {
+  color: #1c1e21;
+}
+
+.ib-ticker-text b {
+  color: #3b5998;
+  cursor: pointer;
+}
+
+.ib-ticker-text b:hover { text-decoration: underline; }
+
+/* Birthdays */
+.ib-bday-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: #1c1e21;
+}
+
+.ib-bday-icon {
+  font-size: 16px;
+}
+
 .ib-username {
   color: white;
   font-weight: bold;

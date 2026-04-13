@@ -59,6 +59,7 @@
           <a href="/accounts/edit/" class="ib-nav-right-link">Settings</a>
           <span class="ib-nav-sep">|</span>
           <a href="#" class="ib-nav-right-link" id="ib-logout-btn">Log Out</a>
+          <button class="ib-poke-btn" id="ib-nav-poke" style="margin-left:8px;" onclick="alert('👉 You poked someone!')">👉 Poke</button>
           <div class="ib-powered">
             by <a href="https://mauxxai.online" target="_blank">mauxx AI</a>
           </div>
@@ -127,10 +128,47 @@
     const widgetCol = document.createElement('div');
     widgetCol.id = 'ib-widget-col';
     widgetCol.innerHTML = `
-      <div style="background:white; border:1px solid #c4ccd8; padding:10px; border-radius:3px;">
-        <h4 style="margin:0 0 8px 0; font-size:12px; color:#6d84b4;">SPONSORED</h4>
-        <div style="font-size:11px; color:#3b5998; font-weight:bold;">mauxx AI Solutions</div>
-        <div style="font-size:11px; color:#777;">Secure your AI sponsorship today.</div>
+      <!-- Birthdays -->
+      <div class="ib-widget">
+        <div class="ib-widget-header">🎁 Birthdays</div>
+        <div class="ib-widget-body">
+          <div class="ib-bday-item">
+            <span class="ib-bday-icon">🎂</span>
+            <span><b>Alex Johnson</b> has a birthday today.</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Ticker -->
+      <div class="ib-widget">
+        <div class="ib-widget-header">
+           <span>Ticker</span>
+           <span style="cursor:pointer">⚙️</span>
+        </div>
+        <div class="ib-widget-body">
+          <div class="ib-ticker-item">
+            <div class="ib-ticker-avatar"></div>
+            <div class="ib-ticker-text"><b>Maria Garcia</b> liked a post from <b>InstaBook</b>.</div>
+          </div>
+          <div class="ib-ticker-item">
+            <div class="ib-ticker-avatar"></div>
+            <div class="ib-ticker-text"><b>Chris Lee</b> commented on a status update.</div>
+          </div>
+          <div class="ib-ticker-item">
+            <div class="ib-ticker-avatar"></div>
+            <div class="ib-ticker-text"><b>Tom Wilson</b> is now friends with <b>Mauxx AI</b>.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sponsored -->
+      <div class="ib-widget">
+        <div class="ib-widget-header">Sponsored</div>
+        <div class="ib-widget-body">
+          <div style="font-size:11px; color:#3b5998; font-weight:bold; margin-bottom:2px;">mauxx AI Solutions</div>
+          <div style="font-size:11px; color:#777;">Secure your AI sponsorship today. Professional kits for students.</div>
+          <a href="https://mauxxai.online" style="font-size:10px; color:#3b5998; text-decoration:none;">mauxxai.online</a>
+        </div>
       </div>
     `;
 
@@ -264,7 +302,7 @@
           onmouseout="this.style.background='none'">
           📍 Check In
         </button>
-        <button onclick="alert('😊 Express a feeling!')"
+        <button onclick="alert('😊 I am feeling Happy!')"
           style="flex:1;background:none;border:none;border-radius:6px;padding:6px 4px;
             font-size:12px;font-family:'Lucida Grande',Arial;cursor:pointer;
             color:#f7b928;font-weight:bold;display:flex;align-items:center;
@@ -339,6 +377,8 @@
     'Add Story':  'Update Status',
     'Your story': 'Post Update',
     'Tagged':     'Tagged Photos',
+    'POSTS':      'WALL',
+    'REELS':      'VIDEOS',
   };
 
   function swapVocabNode(node) {
