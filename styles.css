@@ -302,9 +302,9 @@ body::after {
   right: 0 !important;
   height: 42px !important;
   background: #3b5998 !important;
-  background-image: linear-gradient(#4e69a2, #3b5998) !important; /* Exact FB Header Gradient */
+  background-image: linear-gradient(#4e69a2, #3b5998) !important;
   border-bottom: 1px solid #133783 !important;
-  z-index: 2000000 !important;
+  z-index: 9999 !important; /* High enough for FB feel, but won't block important browser tools */
   box-shadow: 0 2px 2px -2px rgba(0,0,0,0.5) !important;
 }
 
@@ -586,12 +586,24 @@ body::after {
   border-bottom: none !important;
   border-radius: 5px 5px 0 0 !important;
   color: white !important;
-  font-family: "Lucida Grande", Arial, sans-serif !important;
+  font-family: inherit !important;
   font-size: 12px !important;
   font-weight: bold !important;
-  z-index: 2000001 !important;
+  z-index: 10000 !important;
   box-shadow: -1px -2px 6px rgba(0,0,0,0.25) !important;
   user-select: none !important;
+}
+
+/* ── TOOL CONFLICT PROTECTION ── */
+/* If an Instagram modal or 'other tool' (role="dialog") opens, ensure it's not trapped or hidden */
+div[role="dialog"], 
+.x9f619.x1n2onr6.x1ja2u2z[style*="z-index: 1"] {
+  z-index: 20001 !important; /* Always on top of InstaBook */
+}
+
+body:has(div[role="dialog"]) #instabook-topbar {
+    opacity: 0.3; /* Fade our bar so the tool is usable */
+    pointer-events: none;
 }
 
 #instabook-chat-bar .chat-header {
