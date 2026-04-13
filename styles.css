@@ -36,10 +36,44 @@ div[role="navigation"],
 nav[aria-label*="Primary"],
 nav[aria-label*="navigation"],
 div[class*="xh8yej3"] > nav,
+div[class*="x1iyjqo2"][class*="x1n2onr6"],
+div[class*="x1v6s7s5"],
 /* Target the narrow icon sidebar specifically */
 div[style*="width: 72px"] nav,
 div[style*="width:72px"] nav {
   display: none !important;
+  width: 0 !important;
+}
+
+/* ── 3-COLUMN CORE LAYOUT ── */
+#ib-main-wrap {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 12px;
+}
+
+#ib-sidebar-left {
+  width: 180px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+#ib-feed-col {
+  width: 500px;
+  flex-shrink: 0;
+}
+
+#ib-widget-col {
+  width: 300px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
 /* ── PUSH PAGE CONTENT BELOW OUR INJECTED BAR ── */
@@ -68,11 +102,26 @@ article header,
 div[role="article"] header {
   background: #ffffff !important;
   border-bottom: 1px solid #e5e5e5 !important;
-  padding: 8px 12px !important;
+  padding: 8px 10px !important;
   display: flex !important;
   visibility: visible !important;
   height: auto !important;
   overflow: visible !important;
+}
+
+/* Hide native interaction icons */
+article section svg,
+div[role="article"] section svg,
+article button svg {
+  display: none !important;
+}
+
+/* Action section (Like/Comment/Share bar) */
+section[role="group"] {
+  background: #f7f7f7 !important;
+  border-top: 1px solid #e5e5e5 !important;
+  padding: 0 !important;
+  display: block !important;
 }
 
 /* Username links inside posts → Facebook blue */
@@ -88,6 +137,24 @@ article header a:hover,
 div[role="article"] header a:hover {
   text-decoration: underline !important;
   color: #2d4373 !important;
+}
+
+/* ── REELS & EXPLORE Theater/Grid Fix ── */
+/* Force Reels to be a contained window instead of full screen */
+div[style*="height: 100vh"] article,
+div[style*="height: 100%"] article {
+    max-height: 800px !important;
+    max-width: 500px !important;
+    margin: 20px auto !important;
+}
+
+/* Grid layout for Explore/Search */
+div[style*="display: grid"] {
+    gap: 8px !important;
+}
+
+div[style*="display: grid"] > div {
+    border: 1px solid #c4ccd8 !important;
 }
 
 /* Timestamp */

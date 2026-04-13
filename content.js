@@ -71,6 +71,82 @@
     highlightActiveNavLink();
   }
 
+  /* ══════════════════════════════════════════════════════════
+     1.5 INJECT 3-COLUMN LAYOUT WRAPPER
+  ══════════════════════════════════════════════════════════ */
+  function setupThreeColumnLayout() {
+    if (document.getElementById('ib-main-wrap')) return;
+
+    // Target the Instagram main container
+    const nativeMain = q('main[role="main"]') || q('main');
+    if (!nativeMain) return;
+
+    // Create our wrapper
+    const wrap = document.createElement('div');
+    wrap.id = 'ib-main-wrap';
+
+    // Column 1: Left Nav
+    const leftCol = document.createElement('div');
+    leftCol.id = 'ib-sidebar-left';
+    leftCol.innerHTML = `
+      <div class="ib-side-menu">
+        <a href="/" class="ib-side-item active">
+          <span class="ib-side-icon">🌐</span>
+          <span class="ib-side-label">News Feed</span>
+        </a>
+        <a href="/direct/inbox/" class="ib-side-item">
+          <span class="ib-side-icon">✉️</span>
+          <span class="ib-side-label">Messages</span>
+        </a>
+        <a href="/explore/" class="ib-side-item">
+          <span class="ib-side-icon">👥</span>
+          <span class="ib-side-label">Friends</span>
+        </a>
+        <a href="/reels/" class="ib-side-item">
+          <span class="ib-side-icon">📺</span>
+          <span class="ib-side-label">Videos</span>
+        </a>
+      </div>
+      <div style="margin-top:20px; font-size:11px; color:#9197a3;">
+        Explore · More · Apps
+      </div>
+    `;
+
+    // Column 2: Feed (We will move Instagram's feed here)
+    const feedCol = document.createElement('div');
+    feedCol.id = 'ib-feed-col';
+
+    // Move Instagram's internal content into our feed column
+    const internal = nativeMain.querySelector('div') || nativeMain;
+    if (internal && internal !== nativeMain) {
+       // We'll leave it for now and just use CSS to position it,
+       // but a full move is safer for layout.
+    }
+
+    // Column 3: Widgets (Move Instagram's aside here if it exists)
+    const widgetCol = document.createElement('div');
+    widgetCol.id = 'ib-widget-col';
+    widgetCol.innerHTML = `
+      <div style="background:white; border:1px solid #c4ccd8; padding:10px; border-radius:3px;">
+        <h4 style="margin:0 0 8px 0; font-size:12px; color:#6d84b4;">SPONSORED</h4>
+        <div style="font-size:11px; color:#3b5998; font-weight:bold;">mauxx AI Solutions</div>
+        <div style="font-size:11px; color:#777;">Secure your AI sponsorship today.</div>
+      </div>
+    `;
+
+    wrap.appendChild(leftCol);
+    wrap.appendChild(feedCol);
+    wrap.appendChild(widgetCol);
+
+    nativeMain.prepend(wrap);
+
+    // Reposition Instagram's native feed container into our Column 2
+    const instaFeed = nativeMain.querySelector('section') || nativeMain.querySelector('div > div > div');
+    if (instaFeed && feedCol) {
+       feedCol.appendChild(instaFeed);
+    }
+  }
+
   /* Mark current-page link as active */
   function highlightActiveNavLink() {
     const path = location.pathname;
@@ -211,19 +287,31 @@
       if (post.dataset.ibDone) return;
       post.dataset.ibDone = 'true';
 
-      // Like · Comment · Share bar
+      // Hide native buttons and add text links
       const actionSection = post.querySelector('section[role="group"]');
-      if (actionSection && !actionSection.querySelector('.fb-action-bar')) {
-        const bar = document.createElement('div');
-        bar.className = 'fb-action-bar';
-        bar.innerHTML = `
-          <span class="fb-action-btn" onclick="this.classList.toggle('liked');this.style.color=this.classList.contains('liked')?'#3b5998':'#4e5665'">
-            👍 Like
-          </span>
-          <span class="fb-action-btn">💬 Comment</span>
-          <span class="fb-action-btn">↗ Share</span>
-        `;
-        actionSection.after(bar);
+      if (actionSection) {
+        // Hide original SVG icons
+        qa('section[role="group"] svg, section[role="group"] .x1i10hfl').forEach(el => {
+           if (!el.closest('.fb-action-bar')) el.style.display = 'none';
+        });
+
+        if (!actionSection.querySelector('.fb-action-bar')) {
+          const bar = document.createElement('div');
+          bar.className = 'fb-action-bar';
+          bar.innerHTML = `
+            <span class="fb-action-btn" onclick="this.classList.toggle('liked');">👍 Like</span>
+            <span class="fb-action-btn" onclick="alert('Comment focus coming soon!')">💬 Comment</span>
+            <span class="fb-action-btn" onclick="alert('Shared to your Wall!')">↗ Share</span>
+          `;
+          actionSection.appendChild(bar);
+        }
+      }
+
+      // Restyle header
+      const header = post.querySelector('header');
+      if (header) {
+        header.style.background = 'white';
+        header.style.borderBottom = '1px solid #e5e5e5';
       }
 
       // Timestamp suffix
@@ -321,6 +409,9 @@
 
         // 5. Title
         rewriteTitle();
+
+        // 5.5. Layout
+        setTimeout(setupThreeColumnLayout, 100);
 
         // 6. Deferred: username detection & status box
         //    (Instagram's meta tags load slightly after document_end)
