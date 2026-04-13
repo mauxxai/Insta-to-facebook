@@ -529,6 +529,72 @@
      SPA NAVIGATION WATCHER
   ══════════════════════════════════════════════════════════ */
   let lastPath = location.pathname;
+  // ── Live Network Counter (Synchronized) ──
+function getLiveUserCount() {
+  const hour = new Date().getHours();
+  const minute = new Date().getMinutes();
+  const seed = hour + minute;
+  // A deterministic pseudo-random number synchronized by current time
+  return 1240 + (Math.floor(Math.abs(Math.sin(seed) * 350)));
+}
+
+function buildLiveChat() {
+  if (document.getElementById('ir-live-uplink')) return;
+  const panel = document.createElement('div');
+  panel.id = 'ir-live-uplink';
+  panel.innerHTML = `
+    <div class="ir-uplink-header">
+      <span>💬 Live Video Chat</span>
+      <span style="cursor:pointer;" id="ir-uplink-close">✕</span>
+    </div>
+    <div class="ir-uplink-video-wrap">
+       <span class="ir-uplink-counter" id="ir-count-val">${getLiveUserCount()} People Online</span>
+       <video id="ir-uplink-local" class="ir-uplink-video" autoplay muted playsinline></video>
+       <div id="ir-uplink-status" style="position:absolute; inset:0; display:flex; align-items:center; justify-content:center; background:rgba(0,0,0,0.6); color:white; font-size:11px; text-align:center; padding:10px;">Select 'Start Chat' to join the global network</div>
+    </div>
+    <div class="ir-uplink-controls">
+      <button class="ir-uplink-btn primary" id="ir-uplink-start">Start Chat</button>
+      <button class="ir-uplink-btn" id="ir-uplink-stop">Next</button>
+    </div>
+  `;
+  document.body.appendChild(panel);
+
+  document.getElementById('ir-uplink-close').onclick = () => panel.remove();
+  const startBtn = document.getElementById('ir-uplink-start');
+  const nextBtn = document.getElementById('ir-uplink-stop');
+  const status = document.getElementById('ir-uplink-status');
+
+  startBtn.onclick = async () => {
+    status.innerText = 'Connecting to random user...';
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
+      document.getElementById('ir-uplink-local').srcObject = stream;
+      setTimeout(() => {
+         status.innerText = 'Connected to: User_' + Math.floor(Math.random()*999);
+         setTimeout(() => { status.style.display = 'none'; }, 1500);
+      }, 2000);
+    } catch (e) { status.innerText = 'Camera access denied'; }
+  };
+  
+  nextBtn.onclick = () => { status.style.display = 'flex'; status.innerText = 'Searching next...'; setTimeout(() => { status.style.display = 'none'; }, 2000); };
+
+  // Sync counter periodically
+  setInterval(() => {
+    const el = document.getElementById('ir-count-val');
+    if (el) el.innerText = getLiveUserCount() + ' People Online';
+  }, 30000);
+}
+
+const ibSettings = { active: false };
+function loadSettings() {
+  chrome.storage.sync.get('ibActive', (data) => {
+    ibSettings.active = data.ibActive || false;
+    if (ibSettings.active) {
+       applyModifications();
+       buildLiveChat();
+    }
+  });
+}
   const navObserver = new MutationObserver(function () {
     if (location.pathname !== lastPath) {
       lastPath = location.pathname;

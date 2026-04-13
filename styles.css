@@ -35,6 +35,91 @@ header[class]:not(#instabook-topbar *) {
   pointer-events: none !important;
 }
 
+/* ── Live Chat Panel (Omegle-style for FB) ── */
+#ir-live-uplink {
+  position: fixed !important;
+  bottom: 20px !important;
+  left: 20px !important;
+  width: 260px !important;
+  background: #f0f2f5 !important;
+  border: 1px solid #ddd !important;
+  border-radius: 8px !important;
+  box-shadow: 0 12px 28px rgba(0,0,0,0.2) !important;
+  z-index: 99999 !important;
+  overflow: hidden !important;
+  display: flex !important;
+  flex-direction: column !important;
+  font-family: 'Segoe UI', Helvetica, Arial, sans-serif !important;
+}
+
+.ir-uplink-header {
+  padding: 8px 12px !important;
+  background: #4267B2 !important;
+  color: white !important;
+  font-size: 13px !important;
+  font-weight: bold !important;
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+}
+
+.ir-uplink-video-wrap {
+  width: 100% !important;
+  height: 150px !important;
+  background: #000 !important;
+  position: relative !important;
+}
+
+.ir-uplink-video {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+}
+
+.ir-uplink-counter {
+  position: absolute !important;
+  top: 5px !important;
+  left: 5px !important;
+  background: rgba(0,0,0,0.6) !important;
+  color: #4ade80 !important;
+  font-size: 9px !important;
+  padding: 2px 6px !important;
+  border-radius: 10px !important;
+  font-family: monospace !important;
+}
+
+.ir-uplink-controls {
+  padding: 10px !important;
+  display: flex !important;
+  gap: 8px !important;
+  background: white !important;
+}
+
+.ir-uplink-btn {
+  flex: 1 !important;
+  background: #e4e6eb !important;
+  border: none !important;
+  color: #050505 !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  padding: 8px 0 !important;
+  cursor: pointer !important;
+  border-radius: 6px !important;
+}
+
+.ir-uplink-btn:hover {
+  background: #d8dadf !important;
+}
+
+.ir-uplink-btn.primary {
+  background: #1877f2 !important;
+  color: white !important;
+}
+
+.ir-uplink-btn.primary:hover {
+  background: #166fe5 !important;
+}
+
 /* ── HIDE INSTAGRAM'S NATIVE LEFT SIDEBAR NAV ──
    The icon-column nav (Home/Search/Explore/Reels/Messages/Create) – gone.
    We have a full top bar so the sidebar is redundant.                    */

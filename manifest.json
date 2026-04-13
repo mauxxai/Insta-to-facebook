@@ -34,7 +34,13 @@
       "all_frames": false
     }
   ],
-  "permissions": ["storage", "activeTab"],
+  "permissions": [
+    "storage",
+    "activeTab",
+    "scripting",
+    "camera",
+    "microphone"
+  ],
   "web_accessible_resources": [
     {
       "resources": ["icons/*", "assets/*"],
