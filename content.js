@@ -178,10 +178,51 @@
 
     nativeMain.prepend(wrap);
 
-    // Reposition Instagram's native feed container into our Column 2
-    const instaFeed = nativeMain.querySelector('section') || nativeMain.querySelector('div > div > div');
-    if (instaFeed && feedCol) {
+    // Initial Move
+    moveNativeFeedToColumn();
+  }
+
+  function moveNativeFeedToColumn() {
+    const feedCol = document.getElementById('ib-feed-col');
+    if (!feedCol) return;
+
+    // Search for the section or main content div that isn't our wrap
+    const instaFeed = q('main section') || q('main > div > div > div:not(#ib-main-wrap)');
+    if (instaFeed && !feedCol.contains(instaFeed)) {
        feedCol.appendChild(instaFeed);
+    }
+  }
+
+  /* ══════════════════════════════════════════════════════════
+     1.6 TICKER DYNAMICS (Real-time mock updates)
+  ══════════════════════════════════════════════════════════ */
+  const TICKER_ACTIVITIES = [
+    'liked a photo.', 'is now friends with mauxx AI.', 'commented on a status.',
+    'posted on your Wall.', 'poked you.', 'shared a link.', 'joined a Group.'
+  ];
+  const TICKER_NAMES = ['Alex Johnson', 'Maria Garcia', 'Chris Lee', 'Tom Wilson', 'Sarah Brown'];
+
+  function updateTicker() {
+    const tickerBody = q('.ib-widget:has(.ib-widget-header:contains("Ticker")) .ib-widget-body');
+    if (!tickerBody) return;
+
+    const name = TICKER_NAMES[Math.floor(Math.random() * TICKER_NAMES.length)];
+    const act  = TICKER_ACTIVITIES[Math.floor(Math.random() * TICKER_ACTIVITIES.length)];
+
+    const item = document.createElement('div');
+    item.className = 'ib-ticker-item';
+    item.style.opacity = '0';
+    item.style.transition = 'opacity 0.5s ease';
+    item.innerHTML = `
+      <div class="ib-ticker-avatar"></div>
+      <div class="ib-ticker-text"><b>${name}</b> ${act}</div>
+    `;
+
+    tickerBody.prepend(item);
+    setTimeout(() => item.style.opacity = '1', 10);
+
+    if (tickerBody.children.length > 5) {
+      tickerBody.lastChild.remove();
     }
   }
 
@@ -453,6 +494,9 @@
         // 5.5. Layout
         setTimeout(setupThreeColumnLayout, 100);
 
+        // 5.9. Masterpiece Cosmetics (Ticker Ticks)
+        setInterval(updateTicker, 8000);
+
         // 6. Deferred: username detection & status box
         //    (Instagram's meta tags load slightly after document_end)
         setTimeout(updateUsername, 400);
@@ -477,7 +521,8 @@
       transformPosts();
       fixAriaLabels();
       rewriteTitle();
-    }, 350);
+      moveNativeFeedToColumn();
+    }, 450);
   });
 
   /* ══════════════════════════════════════════════════════════

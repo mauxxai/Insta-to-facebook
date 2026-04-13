@@ -7,9 +7,16 @@
 
 /* ── GLOBAL FONT & BACKGROUND ── */
 body, html {
-  background-color: #e9ebee !important;
-  font-family: "Lucida Grande", "Lucida Sans Unicode", Arial, sans-serif !important;
-  color: #333 !important;
+  background-color: #e9ebee !important; /* The classic FB background grey */
+  font-family: "Lucida Grande", "Lucida Sans Unicode", "Tahoma", "Segoe UI", Arial, sans-serif !important;
+  color: #1c1e21 !important;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── 520px FEED CONSTRAINT (The "Golden Ratio" of 2010) ── */
+#ib-feed-col {
+  width: 520px !important;
+  flex-shrink: 0;
 }
 
 /* ── HIDE INSTAGRAM'S NATIVE HEADER (we inject our own) ──
@@ -239,20 +246,22 @@ aside a[href*="terms"] {
 
 /* ── PROFILE FOLLOW BUTTONS ── */
 button[type="button"][class*="x1i10hfl"] {
-  background: #5b74a8 !important;
-  background-image: linear-gradient(#637bad, #5b74a8) !important;
-  border: 1px solid #2d4373 !important;
-  border-radius: 3px !important;
+  background: #627aac !important;
+  background-image: linear-gradient(#7c94c4, #627aac) !important;
+  border: 1px solid #29447e !important;
+  border-radius: 2px !important;
+  box-shadow: 0 1px 1px rgba(0,0,0,0.2) !important;
   color: white !important;
   font-family: "Lucida Grande", sans-serif !important;
-  font-size: 12px !important;
+  font-size: 11px !important;
   font-weight: bold !important;
-  padding: 4px 12px !important;
+  padding: 3px 10px !important;
+  text-shadow: 0 -1px rgba(0,0,0,0.25) !important;
 }
 
 button[type="button"][class*="x1i10hfl"]:hover {
   background: #4a6396 !important;
-  background-image: linear-gradient(#536da3, #4a6396) !important;
+  background-image: linear-gradient(#5a7bb7, #4a6396) !important;
 }
 
 /* ── MODAL / DIALOG ── */
@@ -291,12 +300,12 @@ body::after {
   top: 0 !important;
   left: 0 !important;
   right: 0 !important;
-  height: 44px !important;
+  height: 42px !important;
   background: #3b5998 !important;
-  background-image: linear-gradient(#4a69ad, #3b5998) !important;
-  border-bottom: 1px solid #2d4373 !important;
+  background-image: linear-gradient(#4e69a2, #3b5998) !important; /* Exact FB Header Gradient */
+  border-bottom: 1px solid #133783 !important;
   z-index: 2000000 !important;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.4) !important;
+  box-shadow: 0 2px 2px -2px rgba(0,0,0,0.5) !important;
 }
 
 #instabook-topbar-inner {
