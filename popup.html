@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>InstaBook</title>
+  <style>
+    /* ---- Old Facebook popup style ---- */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      width: 280px;
+      font-family: "Lucida Grande", "Lucida Sans Unicode", Arial, sans-serif;
+      font-size: 12px;
+      color: #333;
+      background: #e9ebee;
+    }
+
+    /* Header */
+    .header {
+      background: #3b5998;
+      background-image: linear-gradient(#4a69ad, #3b5998);
+      border-bottom: 1px solid #2d4373;
+      padding: 10px 12px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .header-logo {
+      width: 40px;
+      height: 40px;
+      background: white;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .header-logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .header-text h1 {
+      font-family: Georgia, serif;
+      font-size: 18px;
+      font-weight: bold;
+      color: white;
+      letter-spacing: -0.5px;
+      text-shadow: 0 1px 2px rgba(0,0,0,0.4);
+    }
+
+    .header-text p {
+      font-size: 10px;
+      color: #c8d8f8;
+      margin-top: 1px;
+    }
+
+    /* Toggle section */
+    .toggle-section {
+      background: white;
+      border: 1px solid #c4ccd8;
+      margin: 10px;
+      border-radius: 3px;
+      overflow: hidden;
+    }
+
+    .toggle-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 12px;
+      border-bottom: 1px solid #e5e5e5;
+    }
+
+    .toggle-row:last-child {
+      border-bottom: none;
+    }
+
+    .toggle-label {
+      font-size: 12px;
+      font-weight: bold;
+      color: #333;
+    }
+
+    .toggle-desc {
+      font-size: 10px;
+      color: #999;
+      margin-top: 1px;
+    }
+
+    /* Toggle switch */
+    .toggle-switch {
+      position: relative;
+      width: 38px;
+      height: 20px;
+      flex-shrink: 0;
+    }
+
+    .toggle-switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: #ccc;
+      border-radius: 20px;
+      transition: 0.3s;
+    }
+
+    .slider::before {
+      content: "";
+      position: absolute;
+      height: 14px;
+      width: 14px;
+      left: 3px;
+      bottom: 3px;
+      background: white;
+      border-radius: 50%;
+      transition: 0.3s;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.3);
+    }
+
+    input:checked + .slider {
+      background: #3b5998;
+    }
+
+    input:checked + .slider::before {
+      transform: translateX(18px);
+    }
+
+    /* Status indicator */
+    .status-bar {
+      margin: 0 10px 8px;
+      background: white;
+      border: 1px solid #c4ccd8;
+      border-radius: 3px;
+      padding: 8px 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .status-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #7fba00;
+      box-shadow: 0 0 4px #7fba00;
+      flex-shrink: 0;
+    }
+
+    .status-dot.off {
+      background: #ccc;
+      box-shadow: none;
+    }
+
+    .status-text {
+      font-size: 11px;
+      font-weight: bold;
+      color: #333;
+    }
+
+    .status-subtext {
+      font-size: 10px;
+      color: #999;
+    }
+
+    /* Action buttons */
+    .actions {
+      margin: 0 10px 10px;
+      display: flex;
+      gap: 6px;
+    }
+
+    .btn {
+      flex: 1;
+      padding: 6px 4px;
+      border-radius: 3px;
+      font-size: 11px;
+      font-family: "Lucida Grande", Arial, sans-serif;
+      font-weight: bold;
+      cursor: pointer;
+      text-align: center;
+      text-decoration: none;
+      display: block;
+    }
+
+    .btn-primary {
+      background: #5b74a8;
+      background-image: linear-gradient(#637bad, #5b74a8);
+      border: 1px solid #2d4373;
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background: #4a6396;
+      background-image: linear-gradient(#536da3, #4a6396);
+    }
+
+    .btn-secondary {
+      background: #f4f6fa;
+      border: 1px solid #c4ccd8;
+      color: #333;
+    }
+
+    .btn-secondary:hover {
+      background: #dfe3ee;
+    }
+
+    /* Features list */
+    .features {
+      margin: 0 10px 10px;
+      background: white;
+      border: 1px solid #c4ccd8;
+      border-radius: 3px;
+      padding: 8px 12px;
+    }
+
+    .features-title {
+      font-size: 10px;
+      font-weight: bold;
+      color: #6d84b4;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 6px;
+    }
+
+    .feature-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 3px 0;
+      font-size: 11px;
+      color: #555;
+    }
+
+    .feature-icon {
+      font-size: 13px;
+      width: 18px;
+      text-align: center;
+    }
+
+    /* Footer */
+    .popup-footer {
+      background: #dfe3ee;
+      border-top: 1px solid #c4ccd8;
+      padding: 7px 12px;
+      text-align: center;
+      font-size: 10px;
+      color: #888;
+    }
+
+    .popup-footer a {
+      color: #3b5998;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .popup-footer a:hover {
+      text-decoration: underline;
+    }
+
+    /* Version badge */
+    .version-badge {
+      display: inline-block;
+      background: #3b5998;
+      color: white;
+      font-size: 9px;
+      padding: 1px 5px;
+      border-radius: 2px;
+      vertical-align: middle;
+      margin-left: 4px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <div class="header">
+    <div class="header-logo">
+      <img src="icons/icon48.png" alt="InstaBook" />
+    </div>
+    <div class="header-text">
+      <h1>InstaBook <span class="version-badge">v1.0</span></h1>
+      <p>Instagram wearing a Facebook mask 🎭</p>
+    </div>
+  </div>
+
+  <!-- Status -->
+  <div class="status-bar" id="statusBar">
+    <div class="status-dot" id="statusDot"></div>
+    <div>
+      <div class="status-text" id="statusText">Loading…</div>
+      <div class="status-subtext" id="statusSubtext">Checking extension state…</div>
+    </div>
+  </div>
+
+  <!-- Toggle Controls -->
+  <div class="toggle-section">
+    <div class="toggle-row">
+      <div>
+        <div class="toggle-label">🎭 InstaBook Theme</div>
+        <div class="toggle-desc">Master on/off switch</div>
+      </div>
+      <label class="toggle-switch">
+        <input type="checkbox" id="toggle-main" checked />
+        <span class="slider"></span>
+      </label>
+    </div>
+    <div class="toggle-row">
+      <div>
+        <div class="toggle-label">💬 Facebook Chat Tab</div>
+        <div class="toggle-desc">Old-school corner chat</div>
+      </div>
+      <label class="toggle-switch">
+        <input type="checkbox" id="toggle-chat" checked />
+        <span class="slider"></span>
+      </label>
+    </div>
+    <div class="toggle-row">
+      <div>
+        <div class="toggle-label">🔵 Facebook Top Bar</div>
+        <div class="toggle-desc">Classic blue nav injection</div>
+      </div>
+      <label class="toggle-switch">
+        <input type="checkbox" id="toggle-navbar" checked />
+        <span class="slider"></span>
+      </label>
+    </div>
+    <div class="toggle-row">
+      <div>
+        <div class="toggle-label">✍️ Status Box</div>
+        <div class="toggle-desc">"What's on your mind?"</div>
+      </div>
+      <label class="toggle-switch">
+        <input type="checkbox" id="toggle-status" checked />
+        <span class="slider"></span>
+      </label>
+    </div>
+  </div>
+
+  <!-- Action Buttons -->
+  <div class="actions">
+    <a href="https://instagram.com" target="_blank" class="btn btn-primary" id="openInstaBtn">
+      Open Instagram
+    </a>
+    <a href="https://github.com/mauxxai/Insta-to-Facebook" target="_blank" class="btn btn-secondary">
+      GitHub ↗
+    </a>
+  </div>
+
+  <!-- Features list -->
+  <div class="features">
+    <div class="features-title">What InstaBook does</div>
+    <div class="feature-item"><span class="feature-icon">🎨</span> Repaints UI in Facebook blue</div>
+    <div class="feature-item"><span class="feature-icon">🔵</span> Injects classic Facebook top nav</div>
+    <div class="feature-item"><span class="feature-icon">💬</span> Adds old-school chat tab (bottom-right)</div>
+    <div class="feature-item"><span class="feature-icon">👍</span> Like · Comment · Share buttons on posts</div>
+    <div class="feature-item"><span class="feature-icon">✍️</span> "What's on your mind?" box in feed</div>
+    <div class="feature-item"><span class="feature-icon">🏷️</span> Instagram vocab → Facebook vocab</div>
+    <div class="feature-item"><span class="feature-icon">🎭</span> Logo: Instagram wearing a Facebook mask</div>
+  </div>
+
+  <!-- Footer -->
+  <div class="popup-footer">
+    Built by <a href="https://mauxxai.online" target="_blank">mauxx AI</a> &nbsp;·&nbsp;
+    <a href="https://github.com/mauxxai/Insta-to-Facebook" target="_blank">GitHub</a> &nbsp;·&nbsp;
+    <a href="https://mauxxai.online" target="_blank">mauxxai.online</a>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

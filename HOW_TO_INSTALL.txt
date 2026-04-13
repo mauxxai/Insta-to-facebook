@@ -1,0 +1,62 @@
+╔══════════════════════════════════════════════════════════╗
+║         InstaBook – Instagram Wears Facebook              ║
+║         Built by mauxx AI  |  mauxxai.online             ║
+║         github.com/mauxxai/Insta-to-Facebook             ║
+╚══════════════════════════════════════════════════════════╝
+
+HOW TO INSTALL IN CHROME
+─────────────────────────────────────────────────────────────
+
+1. Open Chrome and go to:
+   chrome://extensions
+
+2. In the top-right corner, turn ON "Developer mode"
+   (toggle switch)
+
+3. Click "Load unpacked"
+
+4. Browse to and SELECT this folder:
+   (the folder containing this file and manifest.json)
+
+5. The InstaBook extension icon will appear in your
+   Chrome toolbar.
+
+6. Go to instagram.com — enjoy the nostalgia! 🎭
+
+─────────────────────────────────────────────────────────────
+
+FEATURES
+─────────────────────────────────────────────────────────────
+✓ Classic Facebook blue navigation bar at the top
+✓ Old-school corner chat tab (bottom-right) with friend list
+  and functional chat windows
+✓ Like · Comment · Share buttons on every post
+✓ "What's on your mind?" status box in the feed
+✓ Instagram vocab replaced: Reels→Videos, Stories→Updates,
+  Followers→Friends, Explore→Discover, etc.
+✓ InstaBook logo (Instagram wearing a Facebook mask 🎭)
+✓ Full old Facebook blue color palette throughout
+✓ Classic Facebook-style scrollbars
+✓ Popup with toggles to control individual features
+✓ Works with Instagram's SPA navigation (React)
+
+─────────────────────────────────────────────────────────────
+
+POPUP CONTROLS
+─────────────────────────────────────────────────────────────
+Click the extension icon to open the popup:
+  • Toggle the whole theme on/off
+  • Toggle the Chat tab on/off
+  • Toggle the Facebook top navbar on/off
+  • Toggle the "What's on your mind?" box on/off
+
+─────────────────────────────────────────────────────────────
+
+ABOUT
+─────────────────────────────────────────────────────────────
+Built by mauxx AI
+Website : https://mauxxai.online
+GitHub  : https://github.com/mauxxai/Insta-to-Facebook
+Version : 1.0.0
+
+─────────────────────────────────────────────────────────────

@@ -1,0 +1,25 @@
+{
+  "record": [
+    {
+      "id": 1,
+      "date": "2026-04-14",
+      "type": "Chrome Extension",
+      "name": "InstaBook – Instagram Wears Facebook",
+      "description": "Chrome extension that transforms Instagram's UI into the classic old Facebook experience (2008-2012 era). Features: old Facebook blue navbar, corner chat tab, Like/Comment/Share buttons on posts, What's on your mind status box, vocab replacements (Reels→Videos, etc.), custom InstaBook logo.",
+      "company": "mauxx AI",
+      "github": "github.com/mauxxai/Insta-to-Facebook",
+      "files": [
+        "manifest.json",
+        "content.js",
+        "chat.js",
+        "styles.css",
+        "popup.html",
+        "popup.js",
+        "icons/icon16.png",
+        "icons/icon48.png",
+        "icons/icon128.png",
+        "assets/logo.svg"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,687 @@
+/* ============================================================
+   InstaBook – Instagram Wears Facebook
+   Old Facebook Theme CSS Override (v2 – clean, no double logo)
+   Built by mauxx AI (mauxxai.online)
+   GitHub: github.com/mauxxai/Insta-to-Facebook
+   ============================================================ */
+
+/* ── GLOBAL FONT & BACKGROUND ── */
+body, html {
+  background-color: #e9ebee !important;
+  font-family: "Lucida Grande", "Lucida Sans Unicode", Arial, sans-serif !important;
+  color: #333 !important;
+}
+
+/* ── HIDE INSTAGRAM'S NATIVE HEADER (we inject our own) ──
+   Once #instabook-topbar is present, hide Instagram's header entirely.
+   The :has() selector fires once our element exists in the DOM.           */
+body:has(#instabook-topbar) header,
+body:has(#instabook-topbar) [role="banner"] {
+  display: none !important;
+}
+
+/* Fallback for browsers without :has() – hide anyway, our JS re-shows content */
+header[class]:not(#instabook-topbar *) {
+  visibility: hidden !important;
+  height: 0 !important;
+  overflow: hidden !important;
+  pointer-events: none !important;
+}
+
+/* ── HIDE INSTAGRAM'S NATIVE LEFT SIDEBAR NAV ──
+   The icon-column nav (Home/Search/Explore/Reels/Messages/Create) – gone.
+   We have a full top bar so the sidebar is redundant.                    */
+nav[role="navigation"],
+div[role="navigation"],
+nav[aria-label*="Primary"],
+nav[aria-label*="navigation"],
+div[class*="xh8yej3"] > nav,
+/* Target the narrow icon sidebar specifically */
+div[style*="width: 72px"] nav,
+div[style*="width:72px"] nav {
+  display: none !important;
+}
+
+/* ── PUSH PAGE CONTENT BELOW OUR INJECTED BAR ── */
+body {
+  padding-top: 44px !important;
+}
+
+/* ── BACKGROUND COLOUR OF THE FEED AREA ── */
+main, [role="main"] {
+  background: #e9ebee !important;
+}
+
+/* ── POSTS / CARDS → Facebook white boxes ── */
+article,
+div[role="article"] {
+  background: #ffffff !important;
+  border: 1px solid #c4ccd8 !important;
+  border-radius: 3px !important;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.1) !important;
+  margin-bottom: 12px !important;
+  font-family: "Lucida Grande", "Lucida Sans Unicode", Arial, sans-serif !important;
+}
+
+/* Post header bar */
+article header,
+div[role="article"] header {
+  background: #ffffff !important;
+  border-bottom: 1px solid #e5e5e5 !important;
+  padding: 8px 12px !important;
+  display: flex !important;
+  visibility: visible !important;
+  height: auto !important;
+  overflow: visible !important;
+}
+
+/* Username links inside posts → Facebook blue */
+article header a,
+div[role="article"] header a {
+  color: #3b5998 !important;
+  font-weight: bold !important;
+  font-size: 13px !important;
+  text-decoration: none !important;
+}
+
+article header a:hover,
+div[role="article"] header a:hover {
+  text-decoration: underline !important;
+  color: #2d4373 !important;
+}
+
+/* Timestamp */
+article time, div[role="article"] time {
+  color: #999 !important;
+  font-size: 11px !important;
+}
+
+/* ── ACTION BUTTONS (Like / Comment / Share) ── */
+section[role="group"] {
+  background: #f7f7f7 !important;
+  border-top: 1px solid #e5e5e5 !important;
+  padding: 4px 12px !important;
+}
+
+/* ── COMMENT INPUT ── */
+input[placeholder*="Add a comment"],
+textarea[placeholder*="comment"] {
+  background: #ffffff !important;
+  border: 1px solid #c4ccd8 !important;
+  border-radius: 2px !important;
+  color: #333 !important;
+  font-size: 12px !important;
+  padding: 4px 6px !important;
+}
+
+/* ── STORIES STRIP → Facebook "Updates" feel ── */
+div[aria-label*="Stories"] {
+  background: #dfe3ee !important;
+  border: 1px solid #c4ccd8 !important;
+  border-radius: 3px !important;
+  padding: 8px !important;
+  margin-bottom: 10px !important;
+}
+
+/* Story ring → Facebook blue */
+canvas {
+  border: 2px solid #3b5998 !important;
+  border-radius: 50% !important;
+}
+
+/* ── RIGHT SIDEBAR ── */
+aside {
+  background: transparent !important;
+}
+
+aside h2,
+aside span[style*="font-weight: 600"] {
+  color: #6d84b4 !important;
+  font-size: 11px !important;
+  font-weight: bold !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.5px !important;
+}
+
+aside a {
+  color: #3b5998 !important;
+  font-size: 12px !important;
+  font-weight: bold !important;
+}
+
+aside button[type="button"] {
+  color: #3b5998 !important;
+  font-weight: bold !important;
+  font-size: 12px !important;
+  background: none !important;
+  border: none !important;
+}
+
+aside button:hover {
+  color: #2d4373 !important;
+  text-decoration: underline !important;
+}
+
+aside a[href*="help"],
+aside a[href*="privacy"],
+aside a[href*="terms"] {
+  color: #aaa !important;
+  font-size: 11px !important;
+  font-weight: normal !important;
+}
+
+/* ── PROFILE FOLLOW BUTTONS ── */
+button[type="button"][class*="x1i10hfl"] {
+  background: #5b74a8 !important;
+  background-image: linear-gradient(#637bad, #5b74a8) !important;
+  border: 1px solid #2d4373 !important;
+  border-radius: 3px !important;
+  color: white !important;
+  font-family: "Lucida Grande", sans-serif !important;
+  font-size: 12px !important;
+  font-weight: bold !important;
+  padding: 4px 12px !important;
+}
+
+button[type="button"][class*="x1i10hfl"]:hover {
+  background: #4a6396 !important;
+  background-image: linear-gradient(#536da3, #4a6396) !important;
+}
+
+/* ── MODAL / DIALOG ── */
+div[role="dialog"] {
+  background: #ffffff !important;
+  border: 1px solid #c4ccd8 !important;
+  border-radius: 4px !important;
+  box-shadow: 2px 2px 8px rgba(0,0,0,0.4) !important;
+}
+
+/* ── SCROLLBAR (old-school thin) ── */
+::-webkit-scrollbar { width: 8px !important; height: 8px !important; }
+::-webkit-scrollbar-track { background: #e9ebee !important; }
+::-webkit-scrollbar-thumb { background: #aab3cf !important; border-radius: 0 !important; }
+::-webkit-scrollbar-thumb:hover { background: #7a89b0 !important; }
+
+/* ── MAUXX AI WATERMARK ── */
+body::after {
+  content: "InstaBook by mauxx AI" !important;
+  position: fixed !important;
+  bottom: 60px !important;
+  left: 8px !important;
+  font-size: 9px !important;
+  color: rgba(59, 89, 152, 0.3) !important;
+  font-family: "Lucida Grande", sans-serif !important;
+  pointer-events: none !important;
+  z-index: 1000 !important;
+  letter-spacing: 0.3px !important;
+}
+
+/* ══════════════════════════════════════════════════════════
+   INSTABOOK TOP BAR (injected by content.js)
+   ══════════════════════════════════════════════════════════ */
+#instabook-topbar {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  height: 44px !important;
+  background: #3b5998 !important;
+  background-image: linear-gradient(#4a69ad, #3b5998) !important;
+  border-bottom: 1px solid #2d4373 !important;
+  z-index: 2000000 !important;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.4) !important;
+}
+
+#instabook-topbar-inner {
+  max-width: 1240px;
+  margin: 0 auto;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 12px;
+  gap: 12px;
+}
+
+/* Left: logo + search */
+.ib-nav-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.ib-logo {
+  display: flex;
+  align-items: baseline;
+  gap: 2px;
+  cursor: default;
+  text-decoration: none;
+}
+
+.ib-logo-f {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 30px;
+  font-weight: bold;
+  color: white;
+  line-height: 1;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.35);
+}
+
+.ib-logo-name {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 16px;
+  font-weight: bold;
+  color: rgba(255,255,255,0.88);
+  letter-spacing: -0.3px;
+}
+
+/* Search box */
+.ib-search-wrap { position: relative; }
+
+.ib-search-input {
+  background: rgba(255,255,255,0.15) !important;
+  border: 1px solid rgba(255,255,255,0.25) !important;
+  border-radius: 4px !important;
+  color: white !important;
+  font-size: 12px !important;
+  padding: 5px 10px 5px 28px !important;
+  width: 160px !important;
+  outline: none !important;
+  font-family: "Lucida Grande", Arial, sans-serif !important;
+  transition: width 0.2s ease, background 0.2s ease !important;
+}
+
+.ib-search-input::placeholder { color: rgba(255,255,255,0.65) !important; }
+
+.ib-search-input:focus {
+  background: rgba(255,255,255,0.22) !important;
+  width: 200px !important;
+  border-color: rgba(255,255,255,0.4) !important;
+}
+
+.ib-search-icon {
+  position: absolute;
+  left: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 11px;
+  pointer-events: none;
+  opacity: 0.7;
+}
+
+/* Center: nav links */
+.ib-nav-center {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  flex-grow: 1;
+  justify-content: center;
+}
+
+.ib-nav-link {
+  color: white !important;
+  text-decoration: none !important;
+  font-size: 12px !important;
+  font-family: "Lucida Grande", Arial, sans-serif !important;
+  font-weight: bold !important;
+  padding: 5px 10px !important;
+  border-radius: 3px !important;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  transition: background 0.15s ease;
+}
+
+.ib-nav-link:hover,
+.ib-nav-link.ib-active {
+  background: rgba(255,255,255,0.18) !important;
+}
+
+.ib-notif-badge {
+  background: #dd3c10;
+  color: white;
+  font-size: 9px;
+  padding: 1px 4px;
+  border-radius: 2px;
+  font-weight: bold;
+  line-height: 1.4;
+}
+
+/* Right: username + settings */
+.ib-nav-right {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+  font-size: 12px;
+  font-family: "Lucida Grande", Arial, sans-serif;
+}
+
+.ib-username {
+  color: white;
+  font-weight: bold;
+  font-size: 12px;
+  max-width: 100px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ib-nav-sep { color: rgba(255,255,255,0.35); font-size: 11px; }
+
+.ib-nav-right-link {
+  color: rgba(255,255,255,0.75) !important;
+  text-decoration: none !important;
+  font-size: 11px !important;
+  font-family: "Lucida Grande", Arial, sans-serif !important;
+  transition: color 0.15s ease;
+}
+
+.ib-nav-right-link:hover {
+  color: white !important;
+  text-decoration: underline !important;
+}
+
+.ib-powered {
+  margin-left: 6px;
+  font-size: 10px;
+  color: rgba(255,255,255,0.4);
+  white-space: nowrap;
+}
+
+.ib-powered a {
+  color: rgba(255,255,255,0.55) !important;
+  text-decoration: none !important;
+  font-size: 10px !important;
+}
+
+.ib-powered a:hover {
+  color: white !important;
+  text-decoration: underline !important;
+}
+
+/* ══════════════════════════════════════════════════════════
+   INSTABOOK CHAT TAB (injected by chat.js)
+   ══════════════════════════════════════════════════════════ */
+#instabook-chat-bar {
+  position: fixed !important;
+  bottom: 0 !important;
+  right: 20px !important;
+  width: 218px !important;
+  background: #3b5998 !important;
+  background-image: linear-gradient(#4a69ad, #3b5998) !important;
+  border: 1px solid #2d4373 !important;
+  border-bottom: none !important;
+  border-radius: 5px 5px 0 0 !important;
+  color: white !important;
+  font-family: "Lucida Grande", Arial, sans-serif !important;
+  font-size: 12px !important;
+  font-weight: bold !important;
+  z-index: 2000001 !important;
+  box-shadow: -1px -2px 6px rgba(0,0,0,0.25) !important;
+  user-select: none !important;
+}
+
+#instabook-chat-bar .chat-header {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  padding: 6px 10px !important;
+  cursor: pointer !important;
+}
+
+#instabook-chat-bar .chat-header:hover {
+  background: rgba(255,255,255,0.1) !important;
+  border-radius: 5px 5px 0 0 !important;
+}
+
+.chat-title {
+  display: flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+}
+
+.chat-dot {
+  width: 8px !important;
+  height: 8px !important;
+  background: #7fba00 !important;
+  border-radius: 50% !important;
+  box-shadow: 0 0 5px #7fba00 !important;
+  flex-shrink: 0 !important;
+}
+
+.chat-controls {
+  display: flex !important;
+  gap: 4px !important;
+}
+
+.chat-controls span {
+  cursor: pointer !important;
+  padding: 0 3px !important;
+  font-size: 13px !important;
+  opacity: 0.75 !important;
+  transition: opacity 0.15s !important;
+}
+
+.chat-controls span:hover { opacity: 1 !important; }
+
+#instabook-chat-body {
+  background: #ffffff !important;
+  border-top: 1px solid #2d4373 !important;
+  max-height: 300px !important;
+  overflow-y: auto !important;
+}
+
+.chat-search {
+  padding: 6px 8px !important;
+  border-bottom: 1px solid #e5e5e5 !important;
+  background: #f7f8fc !important;
+}
+
+.chat-search input {
+  width: 100% !important;
+  border: 1px solid #c4ccd8 !important;
+  border-radius: 3px !important;
+  padding: 3px 6px !important;
+  font-size: 11px !important;
+  color: #333 !important;
+  box-sizing: border-box !important;
+  background: white !important;
+  outline: none !important;
+}
+
+.chat-section-label {
+  padding: 4px 10px !important;
+  font-size: 10px !important;
+  font-weight: bold !important;
+  color: #6d84b4 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.5px !important;
+  background: #f7f8fc !important;
+}
+
+.chat-friend {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  padding: 6px 10px !important;
+  cursor: pointer !important;
+  border-bottom: 1px solid #f2f2f2 !important;
+  font-size: 12px !important;
+  color: #333 !important;
+  transition: background 0.12s ease !important;
+}
+
+.chat-friend:hover { background: #dfe3ee !important; }
+
+.friend-avatar {
+  width: 28px !important;
+  height: 28px !important;
+  border-radius: 50% !important;
+  background: #8b9dc3 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  color: white !important;
+  font-size: 11px !important;
+  font-weight: bold !important;
+  flex-shrink: 0 !important;
+  position: relative !important;
+}
+
+.online-dot {
+  position: absolute !important;
+  bottom: 0 !important;
+  right: 0 !important;
+  width: 8px !important;
+  height: 8px !important;
+  background: #7fba00 !important;
+  border-radius: 50% !important;
+  border: 1.5px solid white !important;
+}
+
+.friend-name {
+  font-weight: bold !important;
+  color: #3b5998 !important;
+  font-size: 12px !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+}
+
+.friend-status {
+  font-size: 10px !important;
+  color: #999 !important;
+}
+
+/* Chat window popup */
+.instabook-chat-window {
+  position: fixed !important;
+  bottom: 0 !important;
+  width: 230px !important;
+  background: white !important;
+  border: 1px solid #c4ccd8 !important;
+  border-bottom: none !important;
+  border-radius: 5px 5px 0 0 !important;
+  z-index: 2000002 !important;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.25) !important;
+  font-family: "Lucida Grande", Arial, sans-serif !important;
+  font-size: 12px !important;
+}
+
+.cw-header {
+  background: #3b5998 !important;
+  background-image: linear-gradient(#4a69ad, #3b5998) !important;
+  color: white !important;
+  padding: 5px 8px !important;
+  border-radius: 5px 5px 0 0 !important;
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  cursor: pointer !important;
+  font-weight: bold !important;
+  font-size: 12px !important;
+}
+
+.cw-close {
+  cursor: pointer !important;
+  font-size: 14px !important;
+  opacity: 0.8 !important;
+  transition: opacity 0.15s !important;
+}
+
+.cw-close:hover { opacity: 1 !important; }
+
+.cw-messages {
+  height: 200px !important;
+  overflow-y: auto !important;
+  padding: 8px !important;
+  background: #f5f7fb !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 6px !important;
+}
+
+.cw-msg {
+  background: white !important;
+  border: 1px solid #e0e4f0 !important;
+  border-radius: 10px 10px 10px 2px !important;
+  padding: 5px 9px !important;
+  font-size: 11px !important;
+  color: #333 !important;
+  max-width: 82% !important;
+}
+
+.cw-msg.mine {
+  background: #dfe3ee !important;
+  align-self: flex-end !important;
+  border-color: #c4ccd8 !important;
+  border-radius: 10px 10px 2px 10px !important;
+}
+
+.cw-msg-user {
+  font-weight: bold !important;
+  color: #3b5998 !important;
+  font-size: 10px !important;
+  margin-bottom: 2px !important;
+}
+
+.cw-input-area {
+  border-top: 1px solid #e5e5e5 !important;
+  padding: 5px 6px !important;
+  background: white !important;
+  display: flex !important;
+  gap: 4px !important;
+  align-items: center !important;
+}
+
+.cw-input-area input {
+  flex: 1 !important;
+  border: 1px solid #c4ccd8 !important;
+  border-radius: 12px !important;
+  padding: 4px 8px !important;
+  font-size: 11px !important;
+  outline: none !important;
+  font-family: "Lucida Grande", Arial, sans-serif !important;
+}
+
+.cw-input-area button {
+  background: #5b74a8 !important;
+  color: white !important;
+  border: 1px solid #2d4373 !important;
+  border-radius: 3px !important;
+  padding: 4px 8px !important;
+  font-size: 11px !important;
+  font-weight: bold !important;
+  cursor: pointer !important;
+  font-family: "Lucida Grande", Arial, sans-serif !important;
+}
+
+.cw-input-area button:hover { background: #4a6396 !important; }
+
+/* Facebook-style Like · Comment · Share bar injected into posts */
+.fb-action-bar {
+  display: flex;
+  align-items: stretch;
+  border-top: 1px solid #e5e5e5;
+  background: #fafafa;
+}
+
+.fb-action-btn {
+  flex: 1;
+  text-align: center;
+  padding: 6px 4px;
+  font-size: 12px;
+  font-weight: bold;
+  font-family: "Lucida Grande", Arial, sans-serif;
+  color: #4e5665;
+  cursor: pointer;
+  border-right: 1px solid #e5e5e5;
+  transition: background 0.12s ease;
+}
+
+.fb-action-btn:last-child { border-right: none; }
+.fb-action-btn:hover { background: #f0f2f5; color: #3b5998; }
+.fb-action-btn.liked { color: #3b5998; }

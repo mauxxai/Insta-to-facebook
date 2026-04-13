@@ -1,0 +1,44 @@
+{
+  "manifest_version": 3,
+  "name": "InstaBook – Instagram Wears Facebook",
+  "version": "2.0.0",
+  "description": "Transforms Instagram into the classic Facebook experience. Built by mauxx AI (mauxxai.online)",
+  "author": "mauxx AI – mauxxai.online",
+  "homepage_url": "https://mauxxai.online",
+  "icons": {
+    "16":  "icons/icon16.png",
+    "48":  "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16":  "icons/icon16.png",
+      "48":  "icons/icon48.png",
+      "128": "icons/icon128.png"
+    },
+    "default_title": "InstaBook by mauxx AI"
+  },
+  "content_scripts": [
+    {
+      "matches": ["*://www.instagram.com/*"],
+      "js": ["loading.js"],
+      "run_at": "document_start",
+      "all_frames": false
+    },
+    {
+      "matches": ["*://www.instagram.com/*"],
+      "css": ["styles.css"],
+      "js": ["content.js", "chat.js"],
+      "run_at": "document_end",
+      "all_frames": false
+    }
+  ],
+  "permissions": ["storage", "activeTab"],
+  "web_accessible_resources": [
+    {
+      "resources": ["icons/*", "assets/*"],
+      "matches": ["*://www.instagram.com/*"]
+    }
+  ]
+}
